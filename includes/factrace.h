@@ -6,13 +6,14 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 01:41:43 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/28 03:24:45 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/28 04:45:09 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FACTRACE_H
 # define FACTRACE_H
 
+# include <stdlib.h>
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>
