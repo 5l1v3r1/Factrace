@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 01:43:25 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/28 17:54:36 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/28 18:48:12 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static t_factrace	*factrace_search_solution(t_factrace *f)
 	if (mpz_cmp_ui(f->big, 4) < 0)
 		return (NULL);
 	while (!mpz_divisible_p(f->big, f->factor1))
-		mpz_add_ui(f->factor1, f->factor1, 1);
+		mpz_nextprime(f->factor1, f->factor1);
 	mpz_divexact(f->factor2, f->big, f->factor1);
 	if (!mpz_cmp_ui(f->factor2, 1))
 		return (NULL);
