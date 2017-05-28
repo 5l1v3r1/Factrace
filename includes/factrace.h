@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 01:41:43 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/28 16:05:51 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/28 18:49:10 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <sys/uio.h>
 # include <unistd.h>
 # include "gmp.h"
-
 
 typedef struct		s_factrace
 {
