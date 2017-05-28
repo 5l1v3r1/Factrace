@@ -6,7 +6,7 @@
 #    By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/05/27 22:05:37 by mapandel          #+#    #+#              #
-#    Updated: 2017/05/28 01:59:44 by mapandel         ###   ########.fr        #
+#    Updated: 2017/05/28 16:06:32 by mapandel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,11 +15,11 @@ NAME =		factrace
 #			Compilation
 
 CC = 		clang
-CFLAGS = 	-Wall -Wextra -Werror -Weverything
+CFLAGS = 	-Wall -Wextra -Werror
 
 #			Sources
 
-SRC =		sources/factrace.c \
+SRC =		sources/factrace.c
 
 OBJ =		$(SRC:.c=.o)
 
@@ -51,7 +51,7 @@ WHI =		\033[37m
 $(NAME):
 	@echo "$(CYA)--::Compil Factrace::--$(DEF)"
 	@make $(OBJ)
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L $(LIB)
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) -L $(LIB) -lgmp -Wl,-no_pie
 
 all: $(NAME)
 
