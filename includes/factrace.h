@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 01:41:43 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/28 04:45:09 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/28 16:05:51 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,11 @@
 # include "gmp.h"
 
 
-typedef struct			s_factrace
+typedef struct		s_factrace
 {
-	mpz_t				big;
-	mpz_t				factor1;
-	mpz_t				factor2;
-	struct s_factrace	*next;
-}						t_factrace;
+	mpz_t			big;
+	mpz_t			factor1;
+	mpz_t			factor2;
+}					t_factrace;
 
 #endif
