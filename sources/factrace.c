@@ -6,64 +6,73 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 01:43:25 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/28 04:42:31 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/28 16:07:57 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "factrace.h"
 
+static t_factrace	*factrace_search_solution(t_factrace *f)
+{
+	if (mpz_cmp_ui(f->big, 4) < 0)
+		return (NULL);
+	while (!mpz_divisible_p(f->big, f->factor1))
+		mpz_add_ui(f->factor1, f->factor1, 1);
+	mpz_divexact(f->factor2, f->big, f->factor1);
+	if (!mpz_cmp_ui(f->factor2, 1))
+		return (NULL);
+	return (f);
+}
+
 static void			del_t_factrace(t_factrace *f)
 {
-	t_factrace		*tmp;
-
-	while (f)
-	{
-		tmp = f;
-		f = f->next;
-		mpz_clear(tmp->big);
-		mpz_clear(tmp->factor1);
-		mpz_clear(tmp->factor2);
-		free(tmp);
-	}
+	mpz_clear(f->big);
+	mpz_clear(f->factor1);
+	mpz_clear(f->factor2);
+	free(f);
 }
 
 static t_factrace	*init_t_factrace(t_factrace *f)
 {
-	t_factrace		*start;
 	char			*stdin;
+	int				ret;
 
-	start = f;
 	if (!(stdin = (char*)malloc(sizeof(char) * 10000000))
-		|| read(1, stdin, 10000000) == -1)
+		|| (ret = read(0, stdin, 10000000)) == -1)
 		return (NULL);
-	while ()//parsing every line
+	stdin[ret] = '\0';
+	if (ret == 1 && stdin[0] == '\n')
 	{
-		if (!(f = (t_factrace*)malloc(sizeof(t_factrace))))
-			return (NULL);
-		mpz_init(f->big);
-		//evaluate big with the line value
-		mpz_init(f->factor1);
-		mpz_init(f->factor2);
-		f = f->next;
+		free(stdin);
+		return (NULL);
 	}
+	if (!(f = (t_factrace*)malloc(sizeof(t_factrace))))
+		return (NULL);
+	mpz_init(f->big);
+	mpz_set_str(f->big, stdin, 10);
+	mpz_init(f->factor1);
+	mpz_set_ui(f->factor1, 2);
+	mpz_init(f->factor2);
+	mpz_set_ui(f->factor2, 2);
 	free(stdin);
-	return (start);
+	return (f);
 }
 
-int					main(void)
+int					main(int argc, char **argv)
 {
 	t_factrace		*f;
-	t_factrace		*start;
 
-	start = f;
-	if (!(f = init_t_factrace(f)))
+	f = NULL;
+	if (argc != 2)
 		return (-1);
-	while (f)
+	(void)argv;
+	while (1)
 	{
-		//f = factrace_search_solution(f);
-		//f = factrace_write_output(f);
-		f = f->next;
+		if (!(f = init_t_factrace(f)))
+			return (0);
+		if (!(f = factrace_search_solution(f)))
+			return (-1);
+		gmp_printf("%Zd=%Zd*%Zd\n", f->big, f->factor1, f->factor2);
+		del_t_factrace(f);
 	}
-	del_t_factrace(start);
-	return (0);
 }
