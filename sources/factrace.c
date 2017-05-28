@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 01:43:25 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/28 16:07:57 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/28 17:54:36 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,14 @@ static void			del_t_factrace(t_factrace *f)
 static t_factrace	*init_t_factrace(t_factrace *f)
 {
 	char			*stdin;
-	int				ret;
+	int				i;
 
-	if (!(stdin = (char*)malloc(sizeof(char) * 10000000))
-		|| (ret = read(0, stdin, 10000000)) == -1)
+	i = 0;
+	if (!(stdin = (char*)malloc(sizeof(char) * 10000000)))
 		return (NULL);
-	stdin[ret] = '\0';
-	if (ret == 1 && stdin[0] == '\n')
+	while (read(0, &stdin[i], 1) > 0 && stdin[i] != '\n')
+		++i;
+	if (!i)
 	{
 		free(stdin);
 		return (NULL);
