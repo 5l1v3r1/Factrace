@@ -6,7 +6,7 @@
 /*   By: mapandel <mapandel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/05/28 01:43:25 by mapandel          #+#    #+#             */
-/*   Updated: 2017/05/28 18:48:12 by mapandel         ###   ########.fr       */
+/*   Updated: 2017/05/28 20:59:31 by mapandel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static t_factrace	*init_t_factrace(t_factrace *f)
 		return (NULL);
 	while (read(0, &stdin[i], 1) > 0 && stdin[i] != '\n')
 		++i;
+	stdin[i] = '\0';
 	if (!i)
 	{
 		free(stdin);
